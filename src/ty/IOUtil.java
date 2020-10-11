@@ -21,37 +21,28 @@ public class IOUtil {
         BufferedWriter bw1 = new BufferedWriter(fw1);
         FileWriter fw = new FileWriter(EXERCISES_URL);
         BufferedWriter bw = new BufferedWriter(fw);
-        LinkedList<String> strings = new LinkedList<>();
-        LinkedList<String> result1 = new LinkedList<>();
-        LinkedList<String> result2 = new LinkedList<>();
-        LinkedList<String> strings1 = new LinkedList<>();
-        for(int i=0; i < d ; i++) {
-            //String[] path = ExpProvider.createExp(range).split(";");
-            strings.add(ExpProvider.createExp(range));
-//            bw.write(i+". "+path[0]);
-//            bw.newLine();
-//            bw.flush();
-            //strings1.add(i+". " + ExpCounter.count(path[1]));
-//            bw1.write(i+". " + ExpCounter.count(path[1]));
-//            bw1.newLine();
-//            bw1.flush();
-        }
-        for(int i = 0,tCount = 0;i<strings.size();i++){
+        LinkedList<String> result = new LinkedList<>();
+
+        for(int i = 0,tCount = 0;i<d;){
             boolean isSame = false;
-            for(int j = i+1;j<strings.size();j++){
-                if(ExpChecker.isEqual(strings.get(i).split(";")[1],strings.get(j).split(";")[1])){
+            String problem = ExpProvider.createExp(range);
+            if(result.size()==0)result.add(problem);
+            else
+            for(int j = 0;j<result.size();j++){
+                if(ExpChecker.isEqual(result.get(i).split(";")[1],problem.split(";")[1])){
                     isSame = true;
                 }
             }
             if (isSame == false){
-                String[] path = strings.get(i).split(";");
-                bw.write(tCount+". "+ path[0]);
+                result.add(problem);
+                String[] path = problem.split(";");
+                bw.write(i+". "+ path[0]);
                 bw.newLine();
                 bw.flush();
-                bw1.write(tCount+". " + ExpCounter.count(path[1]));
+                bw1.write(i+". " + ExpCounter.count(path[1]));
                 bw1.newLine();
                 bw1.flush();
-                tCount++;
+                i++;
             }
         }
         bw.close();
