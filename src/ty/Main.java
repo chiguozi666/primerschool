@@ -22,7 +22,7 @@ public class Main {
             }
             switch (b) {
                 case 1:
-                    System.out.println("请输入数值以限定生成题目数值范围,格式:-r 10");
+                    System.out.println("--------请输入数值以限定生成题目数值范围,格式:-r 10---------");
                     if (sc1.hasNextLine()) {
                         inStr = sc1.nextLine();
                     }
@@ -30,7 +30,7 @@ public class Main {
                     if (path.length > 1) {
                         range = Integer.parseInt(path[1]);
                     }
-                    System.out.println("请输入数值以限定生成题目数量,格式:-n 10");
+                    System.out.println("---------请输入数值以限定生成题目数量,格式:-n 10----------");
                     if (sc1.hasNextLine()) {
                         inStr = sc1.nextLine();
                     }
@@ -45,7 +45,7 @@ public class Main {
                     }
                     break;
                 case 2:
-                    System.out.println("请输入校验文件,格式:exercisefile.txt answerfile.txt");
+                    System.out.println("-----------请输入校验文件,格式:exercisefile.txt answerfile.txt---------");
                     if (sc1.hasNextLine()) {
                         inStr = sc1.nextLine();
                     }

@@ -22,12 +22,14 @@ public class IOUtil {
         FileWriter fw = new FileWriter(EXERCISES_URL);
         BufferedWriter bw = new BufferedWriter(fw);
         LinkedList<String> result = new LinkedList<>();
-
+        /**
+         * 生成d个式子
+         */
         for(int i = 0,tCount = 0;i<d;){
             boolean isSame = false;
             String problem = ExpProvider.createExp(range);
-            if(result.size()==0)result.add(problem);
-            else
+            if(result.size()==0)result.add(problem);//为空就直接添加
+            else//每生成一个都和之前集合的作对比
             for(int j = 0;j<result.size();j++){
                 if(ExpChecker.isEqual(result.get(i).split(";")[1],problem.split(";")[1])){
                     isSame = true;

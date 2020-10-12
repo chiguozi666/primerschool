@@ -59,6 +59,11 @@ public class ExpProvider {
         return str;
     }
 
+    /**
+     * 生成表达式
+     * @param range
+     * @return (一个带分数的表达式;一个假分数的表达式)方便计算;
+     */
     public static String createExp(int range) {//生成表达式
         String str = "";
         String str1 = "";

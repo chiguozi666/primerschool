@@ -28,16 +28,13 @@ public class TreeNode {
         if (Node == null) {
             return;
         }
-
         TreeNode treeNode;
         Queue<TreeNode> queue = new LinkedList<>();
         queue.add(Node);
-
+        //使用队列实现层序的输出
         while (queue.size() != 0) {
             treeNode = queue.poll();
-
             System.out.print(treeNode.str + " ");
-
             if (treeNode.left != null) {
                 queue.offer(treeNode.left);
             }
@@ -50,7 +47,7 @@ public class TreeNode {
 
     /**
      * 判断两个树是否相等
-     *
+     *   左右枝交换
      * @param a
      * @param b
      * @return
@@ -63,21 +60,12 @@ public class TreeNode {
             //直接比照左右节点，或者一次换枝叶比较是否相等;
             boolean switchResult = true;//控制是否已经交换
             //左右枝的交换
-            if (!isSwitch) {
+            //isSwitch是个静态变量，单标志上锁负责检查是否变换的，多线程要对这个上锁- -
+            if ((a.str.equals("+")||a.str.equals("*"))&&!isSwitch) {
                 isSwitch = true;
                 switchResult = superCompair(a.right, b.left) && superCompair(a.left, b.right);
                 isSwitch = false;
             }
-//            if (!isSwitch) {
-//                isSwitch = true;
-//                if (isOp(a.str)) {
-//                    if (a.str.equals("*") && a.left.str.equals("*")) {
-//
-//                    }
-//                    TreeNode temp = new TreeNode(a.str);
-//                }
-//            }
-            //
             return (superCompair(a.left, b.left) && superCompair(a.right, b.right)) || switchResult;
         } else return false;
     }
@@ -89,7 +77,12 @@ public class TreeNode {
         return false;
     }
 
-    public static TreeNode suffixExpression2Tree(String suffixStr) {
+    /**
+     * 通过后缀表达式生成一颗二叉树
+     * @param suffixStr 后缀表达式
+     * @return 一颗二叉树
+     */
+    public static TreeNode buildTreeBysuffix(String suffixStr) {
         if (isEmpty(suffixStr)) return null;
         //System.out.println(suffixStr);
         String chs[] = suffixStr.split("( )+");
